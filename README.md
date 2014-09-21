@@ -54,6 +54,7 @@ Zitronen's original code.
 
 ## LICENSES
 ./uart
+
 The UART library in use is based on a library written by Peter Fleury 
     <pfleury@gmx.ch>   http://jump.to/fleury
     his code was published under GNU General Public License, version 2.
@@ -69,6 +70,7 @@ The full text of the license can be found in the ./uart folder and online:
     http://opensource.org/licenses/GPL-2.0
 	
 ./kspio
+
 The code in the kspio folder is a direct 'translation' from the KSPIO 
 plugin code, version 0.15.3, released under Creative Commons Attribution (BY)
 by it's author, 'Zitronen'.
