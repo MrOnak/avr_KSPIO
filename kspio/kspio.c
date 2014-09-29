@@ -226,12 +226,7 @@ uint8_t kspio_boardReceiveData() {
 	c = uart_getc();
 	chr = (unsigned char) c;
 	
-	while (chr != 0xBE) {
-      //sbi(KSPIO_LED_DATA_PORT, KSPIO_GLED);
-	  //_delay_ms(20);
-      //cbi(KSPIO_LED_DATA_PORT, KSPIO_GLED);
-	  //_delay_ms(20);
-	
+	while (chr != 0xBE) {	
 	  if (uart_available() == 0) {
 		return 0;
       }
@@ -242,39 +237,18 @@ uint8_t kspio_boardReceiveData() {
 
     c   = uart_getc();         
     chr = (unsigned char) c;
-	
-    //sbi(KSPIO_LED_DATA_PORT, KSPIO_YLED);
-	//_delay_ms(20);
-    //cbi(KSPIO_LED_DATA_PORT, KSPIO_YLED);
-	//_delay_ms(20);
 
-	if (chr == 0xEF) {
-
-      //sbi(KSPIO_LED_DATA_PORT, KSPIO_RLED);
-	  //_delay_ms(20);
-      //cbi(KSPIO_LED_DATA_PORT, KSPIO_RLED);
-	  //_delay_ms(20);	
-	
+	if (chr == 0xEF) {	
       c = uart_getc(); kspio_rxLen = (unsigned char) c;
       c = uart_getc(); kspio_id    = (unsigned char) c;
       kspio_rxArrayInx = 1;
 
       switch(kspio_id) {
-        case 0:
-
-          //sbi(KSPIO_LED_DATA_PORT, KSPIO_GLED);
-	      //_delay_ms(20);
-          //cbi(KSPIO_LED_DATA_PORT, KSPIO_GLED);
-	      //_delay_ms(20); 		
+        case 0:	
           kspio_structSize = sizeof(kspio_hPacket);   
           kspio_address    = (uint8_t*)&kspio_hPacket;     
           break;
-        case 1:
-
-          //sbi(KSPIO_LED_DATA_PORT, KSPIO_YLED);
-	      //_delay_ms(20);
-          //cbi(KSPIO_LED_DATA_PORT, KSPIO_YLED);
-	      //_delay_ms(20);		
+        case 1:	
           kspio_structSize = sizeof(kspio_vData);   
           kspio_address    = (uint8_t*)&kspio_vData;     
           break;
