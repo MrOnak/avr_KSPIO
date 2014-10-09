@@ -2,10 +2,11 @@
 CC = avr-gcc
 OBJCOPY = avr-objcopy
 DUDE = avrdude
+SIZE = avr-size
 
 # If you are not using ATtiny85 and the USBtiny programmer, 
 # update the lines below to match your configuration
-CFLAGS = -Wall -Os -Iusbdrv -mmcu=atmega328p -DF_CPU=16000000
+CFLAGS = -Wall -Os -mmcu=atmega328p -DF_CPU=16000000
 OBJFLAGS = -j .text -j .data -O ihex
 DUDEFLAGS = -p atmega328p -c usbtiny -v
 
@@ -29,6 +30,10 @@ clean:
 # From .elf file to .hex
 %.hex: %.elf
 	$(OBJCOPY) $(OBJFLAGS) $< $@
+	
+# outputs the size requirements on the microcontroller
+size: main.hex
+	$(SIZE) main.hex
 
 # Main.elf requires additional objects to the firmware, not just main.o
 main.elf: $(OBJECTS)
