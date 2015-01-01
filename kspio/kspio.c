@@ -331,14 +331,23 @@ void kspio_handshake() {
 
 //---- input ------------------------------------------------------------------
 /**
- *
+ * Will query the serial port and update the vessel information
+ * if new data was fetched.
+ * 
+ * Will return the following:
+ * -1 - if no new data was present
+ * 0 - if a handshake took place (switching to a new vessel etc)
+ * 1 - if new data was fetched
  */
-void kspio_input() {
+int8_t kspio_input() {
   kspio_now = millis();
+  int8_t returnValue = -1;
 
   if (kspio_boardReceiveData()) {
     kspio_deadtimeOld = kspio_now;
-    switch(kspio_id) {
+    returnValue = kspio_id;
+    
+    switch (kspio_id) {
       case 0: //Handshake packet
         kspio_handshake();
         break;
@@ -358,6 +367,8 @@ void kspio_input() {
       kspio_LEDSAllOff();
     }    
   }
+  
+  return returnValue;
 }
 
 //---- output -----------------------------------------------------------------

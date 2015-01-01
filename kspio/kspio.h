@@ -21,7 +21,7 @@
 #define KSPIO_H
 
 extern void kspio_init();
-extern void kspio_input();
+extern int8_t kspio_input();
 extern void kspio_output();
 
 void kspio_initTXPackets();
