@@ -24,18 +24,18 @@
 #endif
 
 void init() {
-    uart_init( UART_BAUD_SELECT(UART_BAUD_RATE,F_CPU) ); 
+	uart_init( UART_BAUD_SELECT(UART_BAUD_RATE,F_CPU) ); 
 	kspio_init();
-    sei();
+	sei();
 }
 
 int main(void) {
 	init();
-	
-    while(1) {
+
+	while(1) {
 		kspio_input();
 		kspio_output();
 	}
-    	
+
 	return 0;
 }
