@@ -19,14 +19,14 @@ static uint8_t timer0_fract = 0;
 #define FRACT_MAX (1000 >> 3)
  
  void millisInit() {
-   // timer/counter control register 0 A: fast PWM
-  TCCR0A |= (1 << WGM01) | (1 << WGM00);  
-  // timer/counter control register 0 B: clock select: 64th CPU clock 
-  TCCR0B |= (1<<CS01) | (1<<CS00); // 64th frequency
-  // timer/counter interrupt mask register: timer/counter 0 overflow interrupt enable
-  TIMSK0 |= (1<<TOIE0);
-  
-  //sei(); // enable interrupts - done globally
+	 // timer/counter control register 0 A: fast PWM
+	TCCR0A |= (1 << WGM01) | (1 << WGM00);  
+	// timer/counter control register 0 B: clock select: 64th CPU clock 
+	TCCR0B |= (1<<CS01) | (1<<CS00); // 64th frequency
+	// timer/counter interrupt mask register: timer/counter 0 overflow interrupt enable
+	TIMSK0 |= (1<<TOIE0);
+
+	//sei(); // enable interrupts - done globally
 }
 
 uint32_t millis() {
